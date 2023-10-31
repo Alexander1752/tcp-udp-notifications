@@ -40,7 +40,7 @@ subscriber și server:
 1. Mesajul de login - conține ID-ul cu care clientul se conectează la server.
 Întrcât ID-ul are o lungime maximă destul de redusă, am considerat că a trimite
 numărul maxim de octeți necesari pentru a transmite ID-ul cel mai lung acceptat,
-eventual terminat cu '\0' dacă lungimea lui nu este maximă este o metodă simplă
+eventual terminat cu '\\0' dacă lungimea lui nu este maximă este o metodă simplă
 și cu un overhead neglijabil pentru realizarea conectării.
 
 
@@ -52,20 +52,20 @@ practică doar de un singur bit pentru a fi codificate. Întrucât un octet are
 folosi cele 64 de valori pe care octetul le mai poate stoca în acei 6 biți
 pentru a codifica lungimea topic-ului transmis (căci lungimea acestuia este de
 maxim 50 de caractere - suficient de mică pentru a încăpea). Am ales, pentru
-ușurința despachetării datelor, să trimit suplimentar și octetul '\0' după
+ușurința despachetării datelor, să trimit suplimentar și octetul '\\0' după
 topic, iar acesta face parte din lungimea memorată în octetul descris anterior,
 pe care îl voi numi în continuare "octet de tip" (vezi diagrama de mai jos
 pentru o reprezentare vizuală a descrierii octetului de mai sus).
 
 În concluzie, acest mesaj constă în octetul de tip, urmat de numele topic-ului
-terminat cu caractetul '\0'.
-
-+----+---+---+---+---+---+---+---+---+
-|Bits| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
-+----+---+---+---+---+---+---+---+---+
-|  0 |S/U|S&F|   Topic length + 1    |
-+----+---+---+---+---+---+---+---+---+
-
+terminat cu caractetul '\\0'.
+   ```
+    +----+---+---+---+---+---+---+---+---+
+    |Bits| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+    +----+---+---+---+---+---+---+---+---+
+    |  0 |S/U|S&F|   Topic length + 1    |
+    +----+---+---+---+---+---+---+---+---+
+```
 
 3. Mesaj primit de la un client UDP, trimis mai departe de către server unui
 subscriber.
@@ -83,10 +83,10 @@ aplică aceleași observații de la punctul 2.
 numerotate de la 0 la 2 (INT, SHORT_REAL și FLOAT), acestea se transmit în
 aceeași structură folosită de clienții UDP; tipul de date STRING are, în schimb,
 o mică modificare, mai exact, înaintea string-ului propriu-zis se plasează
-lungimea acestuia (incluzând octetul '\0', care este pus mereu la final) sub
+lungimea acestuia (incluzând octetul '\\0', care este pus mereu la final) sub
 forma a doi octeți în network byte order. Antetul acestui mesaj este
 reprezentat mai jos:
-
+```
 +----+---------------+---------------+---------------+---------------+
 |Word|       1       |       2       |       3       |       4       |
 +----+---------------+---------------+---------------+---------------+
@@ -96,7 +96,7 @@ reprezentat mai jos:
 +----+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |   4|         Source Port           |Tip|TopicLen +1|        Topic...
 +----+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
+```
 
 Note de final:
  * Ambele programe verifică în cât mai multe moduri atât validitatea datelor

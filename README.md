@@ -121,10 +121,10 @@ Note de final:
  abonat îi vor fi trimise).
 
 
-Resurse utilizate:
- [1] https://man7.org/linux/man-pages/man7/epoll.7.html
- [2] http://elf.cs.pub.ro/so/res/teme/tema5-util/lin/
- [3] https://pcom.pages.upb.ro/labs/lab5/udp.html
- [4] https://pcom.pages.upb.ro/labs/lab7/tcp.html
- [5] https://man7.org/linux/man-pages/man7/udp.7.html
+Resurse utilizate: \
+ [1] https://man7.org/linux/man-pages/man7/epoll.7.html \
+ [2] http://elf.cs.pub.ro/so/res/teme/tema5-util/lin/ \
+ [3] https://pcom.pages.upb.ro/labs/lab5/udp.html \
+ [4] https://pcom.pages.upb.ro/labs/lab7/tcp.html \
+ [5] https://man7.org/linux/man-pages/man7/udp.7.html \
  [6] https://man7.org/linux/man-pages/man7/tcp.7.html
